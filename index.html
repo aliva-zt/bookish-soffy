@@ -1,26 +1,637 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+<title>Sparkling Sea Girls</title>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:
+  linear-gradient(to bottom,#02111f,#05304f,#0a5c7d,#49c8f2);
+  color:white;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 30%),
+  radial-gradient(circle at bottom right, rgba(173,255,255,0.15), transparent 30%),
+  radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 40%);
+  z-index:-3;
+}
+
+/* SPARKLES */
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+  radial-gradient(white 1px, transparent 1px),
+  radial-gradient(#dfffff 1px, transparent 1px),
+  radial-gradient(#ffffff80 2px, transparent 2px);
+  background-size:100px 100px,160px 160px,240px 240px;
+  opacity:0.7;
+  animation:sparkle 10s linear infinite;
+  z-index:-2;
+}
+
+@keyframes sparkle{
+  from{
+    transform:translateY(0px);
+  }
+
+  to{
+    transform:translateY(-50px);
+  }
+}
+
+/* BUBBLES */
+
+.bubble{
+  position:fixed;
+  bottom:-120px;
+  background:rgba(255,255,255,0.15);
+  border-radius:50%;
+  animation:float 15s infinite linear;
+  z-index:-1;
+}
+
+@keyframes float{
+  0%{
+    transform:translateY(0);
+    opacity:0;
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(-120vh);
+    opacity:0;
+  }
+}
+
+/* SEA DECOR */
+
+.decor{
+  position:fixed;
+  font-size:35px;
+  opacity:0.35;
+  animation:sway 6s ease-in-out infinite;
+  z-index:-1;
+}
+
+@keyframes sway{
+  0%{
+    transform:translateY(0px) rotate(0deg);
+  }
+
+  50%{
+    transform:translateY(-10px) rotate(8deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(0deg);
+  }
+}
+
+/* HEADER */
+
+header{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+  position:relative;
+  background:
+  linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)),
+  linear-gradient(to bottom,#04243a,#0c5b7a,#2dbde9);
+}
+
+.hero{
+  position:relative;
+  z-index:2;
+  max-width:950px;
+  animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    text-shadow:0 0 10px rgba(255,255,255,0.4);
+  }
+
+  to{
+    text-shadow:0 0 28px rgba(173,255,255,0.9);
+  }
+}
+
+.hero h1{
+  font-size:4.5rem;
+  font-family:'Cinzel',serif;
+  letter-spacing:4px;
+  margin-bottom:25px;
+  color:#efffff;
+}
+
+.hero p{
+  line-height:2;
+  font-size:1.2rem;
+  color:#efffff;
+}
+
+/* WAVES */
+
+.wave{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  line-height:0;
+}
+
+/* MAIN */
+
+section{
+  padding:100px 8%;
+}
+
+.intro{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.intro h2{
+  font-size:2.8rem;
+  margin-bottom:20px;
+  color:#dfffff;
+  font-family:'Cinzel',serif;
+}
+
+.intro p{
+  max-width:850px;
+  margin:auto;
+  line-height:2;
+  color:#efffff;
+}
+
+/* CARDS */
+
+.card{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:35px;
+  padding:40px;
+  margin-bottom:60px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 35px rgba(166,255,255,0.12);
+  transition:0.4s ease;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 45px rgba(175,255,255,0.25);
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  width:400px;
+  height:400px;
+  background:
+  radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+  top:-120px;
+  right:-120px;
+}
+
+.name{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.name h3{
+  font-size:2.5rem;
+  margin-bottom:15px;
+  color:#ecffff;
+  font-family:'Cinzel',serif;
+}
+
+.name p{
+  line-height:2;
+  max-width:850px;
+  margin:auto;
+  color:#efffff;
+}
+
+.hobby{
+  text-align:center;
+  margin-bottom:30px;
+  color:white;
+}
+
+/* FAVORITES */
+
+.favorites{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.fav-box{
+  background:rgba(255,255,255,0.08);
+  border-radius:25px;
+  padding:22px;
+  border:1px solid rgba(255,255,255,0.15);
+  transition:0.3s ease;
+  text-align:center;
+}
+
+.fav-box:hover{
+  transform:scale(1.04);
+}
+
+.icon{
+  font-size:3rem;
+  margin-bottom:15px;
+}
+
+.fav-box h4{
+  margin-bottom:10px;
+  color:#dfffff;
+}
+
+.fav-box p{
+  line-height:1.8;
+  color:#efffff;
+  font-size:0.95rem;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:60px 20px;
+  background:rgba(0,0,0,0.35);
+  line-height:2;
+  color:#efffff;
+}
+
+/* MUSIC BUTTON */
+
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.3);
+  color:white;
+  padding:15px 22px;
+  border-radius:40px;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+  transition:0.3s ease;
+  z-index:100;
+}
+
+.music-btn:hover{
+  background:rgba(255,255,255,0.25);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .hero h1{
+    font-size:2.8rem;
+  }
+
+  .intro h2{
+    font-size:2rem;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- BUBBLES -->
+
+<div class="bubble" style="width:40px;height:40px;left:10%;animation-duration:14s;"></div>
+<div class="bubble" style="width:25px;height:25px;left:28%;animation-duration:10s;"></div>
+<div class="bubble" style="width:55px;height:55px;left:50%;animation-duration:16s;"></div>
+<div class="bubble" style="width:30px;height:30px;left:72%;animation-duration:12s;"></div>
+<div class="bubble" style="width:18px;height:18px;left:88%;animation-duration:9s;"></div>
+
+<!-- DECOR -->
+
+<div class="decor" style="top:12%;left:5%;">🐚</div>
+<div class="decor" style="top:28%;right:6%;">🪸</div>
+<div class="decor" style="bottom:18%;left:6%;">✨</div>
+<div class="decor" style="bottom:12%;right:7%;">🌊</div>
+<div class="decor" style="top:60%;left:10%;">🫧</div>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="hero">
+
+<h1>SPARKLING SEA GIRLS</h1>
+
+<p>
+Welcome to our magical emerald ocean world ✨🌊<br><br>
+
+A fantasy sea filled with glowing corals,
+sparkling seashells, shimmering waves,
+and beautiful stories from three girls beneath the ocean light.
+Every favorite thing we love becomes part of our little underwater world.
+</p>
+
+</div>
+
+<div class="wave">
+
+<svg viewBox="0 0 1440 320">
+<path fill="#04253a" fill-opacity="1"
+d="M0,224L48,202.7C96,181,192,139,288,138.7C384,139,480,181,576,208C672,235,768,245,864,218.7C960,192,1056,128,1152,112C1248,96,1344,128,1392,144L1440,160L1440,320L0,320Z"></path>
+</svg>
+
+</div>
+
+</header>
+
+<!-- MAIN -->
+
+<section>
+
+<div class="intro">
+
+<h2>Our Ocean Story</h2>
+
+<p>
+Beneath the glowing sea,
+three girls carry their own magical worlds.
+From music and movies to favorite characters and dream countries,
+everything creates a beautiful sparkle in our ocean fantasy story. ✨
+</p>
+
+</div>
+
+<!-- AFIFAH -->
+
+<div class="card">
+
+<div class="name">
+
+<h3>Afifah Rayyana Rizqi</h3>
+
+<p>
+Afifah has a calm and mysterious aura like the deep ocean at night.
+She loves music, artistic worlds, and fantasy stories filled with mystery.
+</p>
+
+</div>
+
+<div class="hobby">
+<b>Hobby:</b> Playing Guitar 🎸
+</div>
+
+<div class="favorites">
+
+<div class="fav-box">
+<div class="icon">🖤</div>
+<h4>Favorite Series</h4>
+<p>
+<b>Wednesday</b><br>
+A dark fantasy mystery series with gothic and magical vibes.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">🎸</div>
+<h4>Favorite Band</h4>
+<p>
+<b>Oasis</b><br>
+A legendary English rock band with iconic songs and strong rock energy.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">🎨</div>
+<h4>Favorite Character</h4>
+<p>
+<b>Xavier Thorpe</b><br>
+A mysterious and artistic character from Wednesday.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">🏰</div>
+<h4>Favorite Country</h4>
+<p>
+<b>Luxembourg</b><br>
+A beautiful country that feels like a magical fairytale land.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- PUTRI -->
+
+<div class="card">
+
+<div class="name">
+
+<h3>Putri Balqis</h3>
+
+<p>
+Putri shines brightly like sunlight reflecting on ocean waves.
+She loves cheerful adventures, colorful fantasy worlds, and happy moments.
+</p>
+
+</div>
+
+<div class="hobby">
+<b>Hobby:</b> Playing Basketball 🏀
+</div>
+
+<div class="favorites">
+
+<div class="fav-box">
+<div class="icon">👠</div>
+<h4>Favorite Movie</h4>
+<p>
+<b>Red Shoes</b><br>
+A colorful fantasy movie filled with magic and adventure.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">🎤</div>
+<h4>Favorite Singer</h4>
+<p>
+<b>Bruno Mars</b><br>
+An energetic singer with iconic performances and fun songs.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">⛄</div>
+<h4>Favorite Character</h4>
+<p>
+<b>Olaf</b><br>
+A funny and lovable snowman from Frozen.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">🌙</div>
+<h4>Favorite Country</h4>
+<p>
+<b>Turkey</b><br>
+A beautiful country with romantic scenery and rich culture.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- ZAHRA -->
+
+<div class="card">
+
+<div class="name">
+
+<h3>Zahratussita Aliva</h3>
+
+<p>
+Zahra loves peaceful fantasy worlds and emotional stories.
+She enjoys reading books while listening to soft ocean waves.
+</p>
+
+</div>
+
+<div class="hobby">
+<b>Hobby:</b> Reading Books 📚
+</div>
+
+<div class="favorites">
+
+<div class="fav-box">
+<div class="icon">🌌</div>
+<h4>Favorite Series</h4>
+<p>
+<b>Tomorrow</b><br>
+An emotional fantasy series with deep and touching stories.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">🎼</div>
+<h4>Favorite Singer</h4>
+<p>
+<b>Lana Del Rey</b><br>
+A dreamy singer with emotional and aesthetic music.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">⚡</div>
+<h4>Favorite Character</h4>
+<p>
+<b>Fang</b><br>
+A cool and mysterious character from BoBoiBoy.
+</p>
+</div>
+
+<div class="fav-box">
+<div class="icon">🏛️</div>
+<h4>Favorite Country</h4>
+<p>
+<b>Greece</b><br>
+A magical country with beautiful blue oceans and white cities.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+✨ Sparkling Sea Girls ✨<br>
+
+Emerald Ocean • Fantasy Sea • Sparkling Waves • Underwater Dreams 🌊
+
+</footer>
+
+<!-- MUSIC -->
+
+<button class="music-btn" onclick="toggleMusic()">
+🌊 Play Music
+</button>
+
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4f0f3fd0f6.mp3?filename=dreamy-ocean-ambient-110624.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const music = document.getElementById('bgMusic');
+const btn = document.querySelector('.music-btn');
+
+function toggleMusic(){
+
+if(music.paused){
+
+music.play();
+btn.innerHTML='✨ Pause Music';
+
+}else{
+
+music.pause();
+btn.innerHTML='🌊 Play Music';
+
+}
+
+}
+
+</script>
+
+</body>
 </html>
